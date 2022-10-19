@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.all-projects-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.personalProjects-container,
+.workProject-container{
+    width: 40rem;
+    margin: 10px;
+    text-align: left;
+    max-height: 270px;
+    overflow-y: scroll;
+}
+.workProject-container span{
+    margin-left: 10px;
+}
+.personalProjects-container span{
+    margin-left: 10px;
+}
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: 86%;
+    margin: 14px;
+}
