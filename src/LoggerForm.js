@@ -49,8 +49,16 @@ function LoggerForm(){
         }
         if(project.type === "personal"){
             setPersonalProjects([...personalProjects, project]);
+            //do this instead
+            //setPersonalProjects(prevPersonalProjects => {
+            //return [project, ...prevPersonalProjects];
+            //});
         } else{
             setWorkProjects([...workProjects, project]);
+            //do this instead
+            //setWorkProjects(prevWorkProjects => {
+            //return [project, ...prevWorkProjects];
+            //});
         }
         setDescription('');
         setDuration('');
