@@ -29,6 +29,12 @@
   margin: 4px 10px;
   border-radius: 6px;
 }
+.personalProjdescription,
+.workProjdescription {
+  color: green;
+  padding-left: 20px;
+  flex: 4;
+}
 .personalProjContent .delete-btn:hover,
 .workProjContent .delete-btn:hover {
   cursor: pointer;

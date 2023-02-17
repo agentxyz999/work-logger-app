@@ -21,7 +21,9 @@ function Projects({ personalProjects, workProjects }) {
       return (
         <div className="personalProjContent" key={personalProjects.id}>
           <p style={{ color: "green" }}>{personalProjects.duration}</p>
-          <p>{personalProjects.description}</p>
+          <p className="personalProjdescription">
+            {personalProjects.description}
+          </p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -44,7 +46,7 @@ function Projects({ personalProjects, workProjects }) {
       return (
         <div className="workProjContent" key={workProject.id}>
           <p style={{ color: "green" }}>{workProject.duration}</p>
-          <p>{workProject.description}</p>
+          <p className="workProjdescription">{workProject.description}</p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -61,8 +63,7 @@ function Projects({ personalProjects, workProjects }) {
     });
 
   return (
-    <div className="container mt-1">
-      <h2 className="text-center">Projects</h2>
+    <div className="container mt-3">
       <div className="all-projects-container">
         <Card className="personalProjects-container" key={personalProjects.id}>
           <Card.Header className="card-header">
