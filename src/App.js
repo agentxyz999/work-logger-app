@@ -5,7 +5,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Projects from "./Projects";
 import "./assets/LoggerForm.css";
 
-function LoggerForm() {
+function App() {
   const [type, setType] = useState("personal");
   const [description, setDescription] = useState("");
   const [duration, setDuration] = useState("");
@@ -132,4 +132,4 @@ function LoggerForm() {
     </div>
   );
 }
-export default LoggerForm;
+export default App;
