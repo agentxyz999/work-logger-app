@@ -2,7 +2,12 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import "./assets/Projects.css";
 
-function Projects({ personalProjects, workProjects }) {
+function Projects({
+  personalProjects,
+  workProjects,
+  deletePersonalHandler,
+  deleteWorkHandler,
+}) {
   let personalTotalTIme = 0;
   let workTotalTIme = 0;
 
@@ -25,6 +30,7 @@ function Projects({ personalProjects, workProjects }) {
             {personalProjects.description}
           </p>
           <svg
+            onClick={() => deletePersonalHandler(personalProjects.id)}
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
@@ -48,6 +54,7 @@ function Projects({ personalProjects, workProjects }) {
           <p style={{ color: "green" }}>{workProject.duration}</p>
           <p className="workProjdescription">{workProject.description}</p>
           <svg
+            onClick={() => deleteWorkHandler(workProject.id)}
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"

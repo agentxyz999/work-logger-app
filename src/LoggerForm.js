@@ -1,121 +1,135 @@
-import React, { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import Projects from './Projects'
-import './assets/LoggerForm.css';
+import React, { useState, useEffect } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Projects from "./Projects";
+import "./assets/LoggerForm.css";
 
-function LoggerForm(){
-    const [type, setType] = useState('personal');
-    const [description, setDescription] = useState('');
-    const [duration, setDuration] = useState('');
-    const [workProjects, setWorkProjects] = useState([]);
-    const [personalProjects, setPersonalProjects] = useState([]);
-    
-    //Useeffect in every render
-    useEffect(() => {
-        const workProjectsJSON = JSON.parse(localStorage.getItem("work"));
-        if (workProjectsJSON){
-            setWorkProjects(workProjectsJSON);
-        }
-    }, []);
+function LoggerForm() {
+  const [type, setType] = useState("personal");
+  const [description, setDescription] = useState("");
+  const [duration, setDuration] = useState("");
+  const [workProjects, setWorkProjects] = useState([]);
+  const [personalProjects, setPersonalProjects] = useState([]);
 
-    //Useeffect in every render
-    useEffect(() => {
-        const personalProjectsJSON = JSON.parse(localStorage.getItem("personal"));
-        if (personalProjectsJSON){
-            setPersonalProjects(personalProjectsJSON);
-        }
-    }, []);
-
-    //rerender when personal projects changed
-    useEffect(() => {
-        localStorage.setItem("personal", JSON.stringify(personalProjects));
-    }, [personalProjects]);
-    
-    //rerender when work projects changed
-     useEffect(() => {
-        localStorage.setItem("work", JSON.stringify(workProjects));
-    }, [workProjects]);
-
-    //form submission
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const project = {
-            id: new Date().valueOf().toString(),
-            type: type,
-            description: description,
-            duration: duration
-        }
-        if(project.type === "personal"){
-            setPersonalProjects([...personalProjects, project]);
-            //do this instead
-            //setPersonalProjects(prevPersonalProjects => {
-            //return [project, ...prevPersonalProjects];
-            //});
-        } else{
-            setWorkProjects([...workProjects, project]);
-            //do this instead
-            //setWorkProjects(prevWorkProjects => {
-            //return [project, ...prevWorkProjects];
-            //});
-        }
-        setDescription('');
-        setDuration('');
+  //Useeffect in every render
+  useEffect(() => {
+    const workProjectsJSON = JSON.parse(localStorage.getItem("work"));
+    if (workProjectsJSON) {
+      setWorkProjects(workProjectsJSON);
     }
+  }, []);
 
-    return (
-        <div className='container'>
-            <Form onSubmit={ handleSubmit }>
-                <h1 className='text-center'>Work Logger</h1>
-                <Form.Group className="mb-3">
-                    <Form.Select value={type} onChange={ e => setType(e.target.value) } >
-                        <option value='personal'>Personal</option>
-                        <option value='work'>Work</option>
-                    </Form.Select>
-                    <Form.Text>Select the type of work</Form.Text>     
-                </Form.Group>
+  //Useeffect in every render
+  useEffect(() => {
+    const personalProjectsJSON = JSON.parse(localStorage.getItem("personal"));
+    if (personalProjectsJSON) {
+      setPersonalProjects(personalProjectsJSON);
+    }
+  }, []);
 
-                <Form.Group className="mb-3">
-                    <FloatingLabel label="Description">
-                        <Form.Control
-                            as="textarea"
-                            placeholder="Things to do...."
-                            name='description' 
-                            value={description} 
-                            type="textarea"
-                            onChange={ e => setDescription(e.target.value) }
-                            style={{ height: '100px' }}
-                        />
-                    </FloatingLabel>
-                    <Form.Text>Describe what you want to do...</Form.Text>  
-                </Form.Group>
+  //rerender when personal projects changed
+  useEffect(() => {
+    localStorage.setItem("personal", JSON.stringify(personalProjects));
+  }, [personalProjects]);
 
-                <Form.Group className="mb-3">
-                    <FloatingLabel label="Duration">
-                        <Form.Control
-                            placeholder="Duration"
-                            name='duration' 
-                            value={duration} 
-                            type="text"
-                            onChange={e => setDuration(e.target.value)}
-                            style={{ width: '120px' }}
-                            required 
-                        />
-                    </FloatingLabel>
-                    <Form.Text>Enter the duration (in minutes)</Form.Text>  
-                </Form.Group>
+  //rerender when work projects changed
+  useEffect(() => {
+    localStorage.setItem("work", JSON.stringify(workProjects));
+  }, [workProjects]);
 
-                <Button
-                    type='submit'
-                    variant="primary"
-                    size='lg'
-                > Add
-                </Button>
-            </Form>
+  //form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const project = {
+      id: new Date().valueOf().toString(),
+      type: type,
+      description: description,
+      duration: duration,
+    };
+    if (project.type === "personal") {
+      // setPersonalProjects([...personalProjects, project]);
+      //do this instead
+      setPersonalProjects((prevPersonalProjects) => {
+        return [project, ...prevPersonalProjects];
+      });
+    } else {
+      // setWorkProjects([...workProjects, project]);
+      //do this instead
+      setWorkProjects((prevWorkProjects) => {
+        return [project, ...prevWorkProjects];
+      });
+    }
+    setDescription("");
+    setDuration("");
+  };
+  // Delete personal project
+  const deletePersonalHandler = (id) => {
+    setPersonalProjects((prevPersonalProjects) => {
+      return prevPersonalProjects.filter((item) => item.id !== id);
+    });
+  };
+  // Delete work project
+  const deleteWorkHandler = (id) => {
+    setWorkProjects((prevWorkProjects) => {
+      return prevWorkProjects.filter((item) => item.id !== id);
+    });
+  };
+  return (
+    <div className="container">
+      <Form onSubmit={handleSubmit}>
+        <h1 className="text-center">Work Logger</h1>
+        <Form.Group className="mb-3">
+          <Form.Select value={type} onChange={(e) => setType(e.target.value)}>
+            <option value="personal">Personal</option>
+            <option value="work">Work</option>
+          </Form.Select>
+          <Form.Text>Select the type of work</Form.Text>
+        </Form.Group>
 
-            <Projects personalProjects = {personalProjects} workProjects={workProjects} />
-        </div>
-    );
+        <Form.Group className="mb-3">
+          <FloatingLabel label="Description">
+            <Form.Control
+              as="textarea"
+              placeholder="Things to do...."
+              name="description"
+              value={description}
+              type="textarea"
+              onChange={(e) => setDescription(e.target.value)}
+              style={{ height: "100px" }}
+            />
+          </FloatingLabel>
+          <Form.Text>Describe what you want to do...</Form.Text>
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <FloatingLabel label="Duration">
+            <Form.Control
+              placeholder="Duration"
+              name="duration"
+              value={duration}
+              type="text"
+              onChange={(e) => setDuration(e.target.value)}
+              style={{ width: "120px" }}
+              required
+            />
+          </FloatingLabel>
+          <Form.Text>Enter the duration (in minutes)</Form.Text>
+        </Form.Group>
+
+        <Button type="submit" variant="primary" size="lg">
+          {" "}
+          Add
+        </Button>
+      </Form>
+
+      <Projects
+        personalProjects={personalProjects}
+        deletePersonalHandler={deletePersonalHandler}
+        deleteWorkHandler={deleteWorkHandler}
+        workProjects={workProjects}
+      />
+    </div>
+  );
 }
 export default LoggerForm;
