@@ -84,7 +84,7 @@ function App() {
             <option value="personal">Personal</option>
             <option value="work">Work</option>
           </Form.Select>
-          <Form.Text>Select the type of work</Form.Text>
+          <Form.Text className="form-text">Select the type of work</Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3">
