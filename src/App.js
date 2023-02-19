@@ -116,10 +116,8 @@ function App() {
           </FloatingLabel>
           <Form.Text>Enter the duration (in minutes)</Form.Text>
         </Form.Group>
-
         <Button type="submit" variant="primary" size="lg">
-          {" "}
-          Add
+          Submit
         </Button>
       </Form>
 

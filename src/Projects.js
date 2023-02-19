@@ -1,5 +1,4 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
@@ -74,7 +73,7 @@ function Projects({
 
   return (
     <Row className="all-projects-container">
-      <Col xs={12} sm={12} md={12} lg={6} xl={6}>
+      <Col xs={12} sm={12} md={12} lg={6} xl={6} className="text-center">
         <Card className="personalProjects-container " key={personalProjects.id}>
           <Card.Header className="card-header">
             <h3 className="text-left"> Personal </h3>
@@ -85,7 +84,7 @@ function Projects({
           <Card.Body>{personalProjectsList}</Card.Body>
         </Card>
       </Col>
-      <Col xs={12} sm={12} md={12} lg={6} xl={6}>
+      <Col xs={12} sm={12} md={12} lg={6} xl={6} className="text-center">
         <Card className="workProject-container " key={workProjects.id}>
           <Card.Header className="card-header">
             <h3> Work </h3>
