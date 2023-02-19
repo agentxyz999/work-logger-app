@@ -11,7 +11,7 @@
 }
 .personalProjects-container,
 .workProject-container {
-  width: 40rem;
+  max-width: 40rem;
   margin: 10px;
   text-align: left;
   height: 400px;

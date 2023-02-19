@@ -1,4 +1,7 @@
 import React from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import "./assets/Projects.css";
 
@@ -70,9 +73,9 @@ function Projects({
     });
 
   return (
-    <div className="container mt-3">
-      <div className="all-projects-container">
-        <Card className="personalProjects-container" key={personalProjects.id}>
+    <Row className="all-projects-container">
+      <Col xs={12} sm={12} md={12} lg={6} xl={6}>
+        <Card className="personalProjects-container " key={personalProjects.id}>
           <Card.Header className="card-header">
             <h3 className="text-left"> Personal </h3>
             <p style={{ color: "#0D6BF7", fontSize: "20px" }}>
@@ -81,8 +84,9 @@ function Projects({
           </Card.Header>
           <Card.Body>{personalProjectsList}</Card.Body>
         </Card>
-
-        <Card className="workProject-container" key={workProjects.id}>
+      </Col>
+      <Col xs={12} sm={12} md={12} lg={6} xl={6}>
+        <Card className="workProject-container " key={workProjects.id}>
           <Card.Header className="card-header">
             <h3> Work </h3>
             <p style={{ color: "#0D6BF7", fontSize: "20px" }}>
@@ -91,8 +95,8 @@ function Projects({
           </Card.Header>
           <Card.Body>{workProjectsList}</Card.Body>
         </Card>
-      </div>
-    </div>
+      </Col>
+    </Row>
   );
 }
 export default Projects;
