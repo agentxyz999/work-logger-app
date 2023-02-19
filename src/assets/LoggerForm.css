@@ -1,5 +1,10 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.form-text {
+  color: rgb(171, 159, 159);
+  background-color: #4b4343;
+  padding: 3px;
 }
